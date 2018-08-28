@@ -10,6 +10,7 @@
         VALUES (#{seckillId},#{userPhone},0)
     </insert>
 
+    <!-- 一对多映射使用association, 多对一或者多对多需要使用collection -->
     <resultMap id="SuccessKilled" type="SuccessKilled">
         <id column="seckill_id" property="seckillId"/>
         <result column="user_phone" property="userPhone"/>

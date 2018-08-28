@@ -1,9 +1,7 @@
 package web;
 
 
-import dto.Exposer;
-import dto.SeckillExcecution;
-import dto.SeckillResult;
+import dto.*;
 import entity.Seckill;
 import enums.SeckillStatEnum;
 import exception.RepeatKillException;
@@ -27,6 +25,7 @@ public class SeckillController {
     @Autowired//通过注解自动装配对象
     private SeckillService seckillService;
 
+    //请求处理的方法中，参数可以加上model，其中包含了Map对象用来存储数据
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         //获取列表页
@@ -68,8 +67,8 @@ public class SeckillController {
         return result;
     }
 
-    @RequestMapping(value="/{seckillId}/{md5}/execution",
-    method = RequestMethod.POST,
+    @RequestMapping(value = "/{seckillId}/{md5}/execution",
+            method = RequestMethod.POST,
             produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public SeckillResult<SeckillExcecution> execute(@PathVariable("seckillId") Long seckillId,
@@ -98,7 +97,40 @@ public class SeckillController {
     @RequestMapping(value="/time/now",method = RequestMethod.GET)
     @ResponseBody
     public SeckillResult<Long> time(){
+        System.out.println("fucktime");
         Date now=new Date();
         return new SeckillResult<Long>(true,now.getTime());
+    }
+
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    @ResponseBody
+    public ggb test(@RequestParam(value = "name",required = false ) String name,@RequestParam(value = "msg",required = false) String msg){
+        ggb ggb1=new ggb();
+        if(name==null) {
+            ggb1.setName("ggb");
+            ggb1.setMsg("no name");
+            System.out.println("name is null!");
+            return ggb1;
+        }
+        if(msg ==null){
+            ggb1.setName("gggb");
+            ggb1.setMsg("no msg");
+            System.out.println("msg is null!");
+            return ggb1;
+        }
+
+        System.out.println("name="+name+"  msg="+msg);
+
+        ggb1.setName(name);
+        ggb1.setMsg(msg);
+        return ggb1;
+    }
+
+    @RequestMapping(value = "/test2",method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public Logintest test2(@RequestParam(value = "name") String name, @RequestParam(value = "msg")String msg){
+        System.out.println("name="+name+"  msg="+msg);
+        Logintest logintest=new Logintest("this is openid","this is session_key");
+        return logintest;
     }
 }

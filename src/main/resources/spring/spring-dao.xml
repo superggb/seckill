@@ -25,9 +25,9 @@
         <!-- 关闭连接后不自动commit -->
         <property name="autoCommitOnClose" value="false"/>
         <!-- 获取连接超时时间 -->
-        <property name="checkoutTimeout"  value="1000"/>
+        <property name="checkoutTimeout"  value="5000"/>
         <!-- 获取连接失败重试次数 -->
-        <property name="acquireRetryAttempts" value="2"/>
+        <property name="acquireRetryAttempts" value="4"/>
     </bean>
 
     <!-- 3:配置SqlSessionFactory对象-->
@@ -50,4 +50,24 @@
         <property name="basePackage" value="dao"/>
     </bean>
 
+    <!-- RedisDao配置-->
+    <bean id="redisDao" class="dao.cache.RedisDao">
+        <constructor-arg name="ip" value="111.231.240.211"/>
+        <constructor-arg name="port" value="6379"/>
+    </bean>
+
+
+   <!-- <bean class="redis.clients.jedis.JedisPool" id="jedisPool">
+        <constructor-arg name="host" value="111.231.240.211"/>
+        <constructor-arg name="poolConfig" ref="dataJedisPoolConfig"/>
+        <constructor-arg name="port" value="6379"/>
+    </bean>
+
+    <bean id="dataJedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="300"/>
+        <property name="maxIdle" value="100"/>
+        <property name="maxWaitMillis" value="10000"/>
+        <property name="testOnBorrow" value="true"/>
+    </bean>
+-->
 </beans>
