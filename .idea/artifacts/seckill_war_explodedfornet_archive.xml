@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="seckill:war explodedfornet archive">
+    <output-path>$PROJECT_DIR$/out/artifacts/seckill_war_explodedfornet_archive</output-path>
+    <root id="archive" name="seckill_war explodedfornet archive.war">
+      <element id="artifact" artifact-name="seckill:war explodedfornet" />
+    </root>
+  </artifact>
+</component>
